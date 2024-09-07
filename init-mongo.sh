@@ -9,18 +9,11 @@ mongorestore --host localhost --port 27017 -u "$MONGO_INITDB_ROOT_USERNAME" -p "
 
 # Create admin user
 mongosh --host localhost -u "$MONGO_INITDB_ROOT_USERNAME" -p "$MONGO_INITDB_ROOT_PASSWORD" --authenticationDatabase admin <<EOF
-use admin
+use thrift-trackr
 db.createUser({
-  user: "ttuser",
-  pwd: "thrifttrackrpword",
-  roles: [
-    { role: "userAdminAnyDatabase", db: "admin" },
-    { role: "readWriteAnyDatabase", db: "admin" },
-    { role: "dbAdminAnyDatabase", db: "admin" },
-    { role: "userAdminAnyDatabase", db: "thrift-trackr" },
-    { role: "readWriteAnyDatabase", db: "thrift-trackr" },
-    { role: "dbAdminAnyDatabase", db: "thrift-trackr" }
-  ]
+  user: "test-tt",
+  pwd: "test-tt",
+  roles: [{ role: "readWrite", db: "thrift-trackr" }]
 })
 EOF
 
